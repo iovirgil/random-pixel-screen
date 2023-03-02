@@ -1,0 +1,93 @@
+<html>
+
+  <head>
+
+    <style>
+      /* Center the canvas element */
+      #canvas {
+        display: block;
+        margin: 0 auto;
+      }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    </style>
+
+  </head>
+
+  <body>
+    
+    <canvas id="canvas"></canvas>
+
+    <script>
+
+// Get the canvas element
+const canvas = document.getElementById("canvas");
+
+// Set the canvas size to match the screen size
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Get the canvas context
+const ctx = canvas.getContext("2d");
+
+// Create a function to calculate the cell size and redraw the canvas
+function updateCanvasSize() {
+  // Set the canvas size to match the screen size
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Set the size of each cell in the matrix
+  const cellWidth = 1;
+  const cellHeight = 1;
+
+  // Loop through each cell in the matrix
+  for (let x = 0; x < canvas.width; x++) {
+    for (let y = 0; y < canvas.height; y++) {
+      // Generate a random color
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      const color = `rgb(${r},${g},${b})`;
+
+      // Set the pixel color for the current cell
+      ctx.fillStyle = color;
+      ctx.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+    }
+  }
+}
+
+// Call the updateCanvasSize function when the screen is resized
+window.addEventListener("resize", updateCanvasSize);
+
+// Call the function once to initialize the canvas
+updateCanvasSize();
+
+// Create a function to generate random pixels
+function generatePixels(frameRate) {
+  // Call the updateCanvasSize function on each animation frame
+  updateCanvasSize();
+
+  // Call the generatePixels function again on the next animation frame
+  requestAnimationFrame(() => generatePixels(frameRate));
+}
+
+// Get the refresh rate of the screen
+const refreshRate = window.performance.now();
+
+// Call the generatePixels function with the refresh rate
+generatePixels(refreshRate);
+
+    </script>
+
+  </body>
+
+</html>
