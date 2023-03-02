@@ -1,0 +1,79 @@
+<html>
+
+  <head>
+
+    <style>
+      /* Center the canvas element */
+      #canvas {
+        display: block;
+        margin: 0 auto;
+      }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    </style>
+    
+  </head>
+
+  <body>
+    
+    <canvas id="canvas"></canvas>
+
+    <script>
+
+// Get the canvas element
+const canvas = document.getElementById("canvas");
+
+// Set the canvas size
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Get the canvas context
+const ctx = canvas.getContext("2d");
+
+// Create a function to generate random pixels
+function generatePixels(frameRate) 
+    {
+        
+  // Loop through each pixel in the canvas
+      // Generate a random color
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      const color = `rgb(${r},${g},${b})`;
+      
+      // Set the pixel color
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Call the generatePixels function again on the next animation frame
+      requestAnimationFrame(() => generatePixels(frameRate));
+
+    }
+
+// Get the refresh rate of the screen
+const refreshRate = window.performance.now();
+
+// Call the generatePixels function with the refresh rate
+generatePixels(refreshRate);
+
+// Add an event listener for the 'resize' event
+window.addEventListener('resize', () => {
+  // Set the canvas size to match the new window size
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+    </script>
+
+  </body>
+
+</html>
