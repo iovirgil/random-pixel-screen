@@ -8,3 +8,5 @@ https://iovirgil.neocities.org/random-16x16-pixel-screen-maximum-refresh-rate
 https://iovirgil.neocities.org/random-pixels-dynamic-screen-size-maximum-refresh-rate
 
 https://iovirgil.neocities.org/rotating-cube-random-colour-intervals-random-rotation-intervals
+
+https://iovirgil.neocities.org/code/1728rotatingCubes-randomColours-randomRotationIntervals-constantVelocities
